@@ -29,6 +29,36 @@ const Timer = () => {
       }, 1000);
     }
 
+    return () => clearInterval(interval);
+  }, [isActive, minutes, seconds, initialMinutes]);
+
+  const handleStart = () => {
+    setIsActive(true);
+  };
+
+  const handlePause = () => {
+    setIsActive(false);
+  };
+
+  const handleReset = () => {
+    setIsActive(false);
+    setMinutes(initialMinutes);
+    setSeconds(0);
+  };
+  const handleStart = () => {
+    setIsActive(true);
+  };
+
+  const handlePause = () => {
+    setIsActive(false);
+  };
+
+  const handleReset = () => {
+    setIsActive(false);
+    setMinutes(initialMinutes);
+    setSeconds(0);
+  };
+
 
   return (
     <div className="timer">
@@ -37,9 +67,9 @@ const Timer = () => {
         <span>{String(seconds).padStart(2, '0')}</span>
       </div>
       <div className="controls">
-        <button>Başlat</button>
-        <button >Duraklat</button>
-        <button >Sıfırla</button>
+        <button onClick={handleStart}>Başlat</button>
+        <button onClick={handlePause}>Duraklat</button>
+        <button onClick={handleReset}>Sıfırla</button>
       </div>
     </div>
   );
